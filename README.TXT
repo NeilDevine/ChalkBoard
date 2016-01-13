@@ -1,12 +1,17 @@
-------------------------------------------------------------------------
-This is the project README file. Here, you should describe your project.
-Tell the reader (someone who does not know anything about this project)
-all he/she needs to know. The comments should usually include at least:
-------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+ChalkBoard: An Intuitive Computer Algebra System
+
+The purpose of this project is to design, using object-oriented principles,
+an intuitive and multi-purpose Computer Algebra System. This project is
+intended to be useful particularly in STEM education and engineering. 
+
+
+The key features of such a Computer Algebra System include:
+
+- A simplified user experience
+- Useful functionality for both computation and learning
+- Portability and integratability with programs which may require algebraic computation
+
+Thank you for looking!
+
+AUTHOR: Neil Devine
