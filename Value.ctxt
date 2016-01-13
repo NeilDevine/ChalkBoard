@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.params=data
+comment0.target=Value(java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Value\r\n
+comment1.params=
+comment1.target=double\ getVal()
+numComments=2

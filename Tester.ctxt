@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Tester()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ MainWindow\r\n
+comment1.params=e
+comment1.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment1.text=\ \r\nWhat\ the\ button\ does.\r\n
+comment2.params=
+comment2.target=void\ main()
+numComments=3
