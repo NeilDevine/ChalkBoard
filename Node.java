@@ -76,6 +76,11 @@ public class Node extends Expression // Represents Nodes within a given expressi
         //}
         children.set(index,toReplace);
     }
+    
+    protected void replaceChild(Node oldChild, Node newChild){
+        newChild.parent = this;
+        children.set(children.indexOf(oldChild), newChild);
+    }
 
     // Divides a specific value (in) to this Node
     protected Div divide(Node in){
@@ -446,6 +451,42 @@ public class Node extends Expression // Represents Nodes within a given expressi
                 }
             }
             break;
+            
+            case("Div"):
+            // Experimental
+            if(n.childAt(0) instanceof Mult){
+                if(n.childAt(1) instanceof Mult){
+                    for(Node c : n.childAt(0).children){
+                        for(Node c2 : n.childAt(1).children){
+                            if(c.simplifyN().structureEquals(c2.simplifyN())){
+                                n.childAt(0).removeChild(c);
+                                n.childAt(1).removeChild(c2);
+                            }
+                        }
+                    }
+                }
+                else if(n.childAt(1).isVal() || n.childAt(1).isVar()){
+                    for(Node c : n.childAt(0).children){
+                        if(c.simplifyN().structureEquals(n.childAt(1))){
+                            n.childAt(0).removeChild(c);
+                            n=n.childAt(0);
+                            break;
+                        }
+                    }
+                }
+            }
+            else if(childAt(0).isVal() || n.childAt(0).isVar()){
+                if(childAt(1) instanceof Mult){
+                    for(Node c : n.childAt(1).children){
+                        if(c.simplifyN().structureEquals(n.childAt(0))){
+                            n.childAt(1).removeChild(c);
+                            n=n.childAt(1);
+                            break;
+                        }
+                    }
+                }
+            }
+            break;
         }
         return n;
     }
@@ -503,6 +544,30 @@ public class Node extends Expression // Represents Nodes within a given expressi
             //System.out.println("After fold: " + n);
         }while(!a.structureEquals(n));
 
+        return n;
+    }
+    
+    // Future Expand function
+    protected Node recExpand(){
+        if(this.isVal() || this.isVar()) {return this;}
+        Node n = recCopy(this);
+        switch(getClass().getName()){
+            case("Mult"):
+            for(Node c : n.children){
+                if(c.is("+")){
+                    for(Node c2 : c.children){
+                        Node copy = recCopy(n);
+                        copy.replaceChild(c,c2);
+                        
+                    }
+                }
+            }
+            break;
+            
+            case("Exp"):
+            
+            break;
+        }
         return n;
     }
 }

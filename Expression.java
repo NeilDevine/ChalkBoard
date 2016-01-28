@@ -50,6 +50,7 @@ public class Expression
 
     public Expression(Node rootNode){ root = rootNode; }
 
+    // Newer parsing function should be implemented
     public static String[] parse(String e)
     {
         e = e.replace(" ", "");
@@ -59,7 +60,8 @@ public class Expression
         }
         for(int i = e.length()-1; i >= 0; i--)
         {
-            if(i > 0 && ((e.charAt(i) == '(' && (Character.isDigit(e.charAt(i-1)) || e.charAt(i-1) == ')')) || (e.charAt(i-1) == ')' && Character.isDigit(e.charAt(i)))))
+            if(i > 0 && ((e.charAt(i) == '(' && (Character.isDigit(e.charAt(i-1)) || e.charAt(i-1) == ')')) || 
+            (e.charAt(i-1) == ')' && Character.isDigit(e.charAt(i)))))
             {
                 e = e.substring(0, i) + "*" + e.substring(i);
             }
@@ -70,7 +72,8 @@ public class Expression
         }
         for(int i = 0; i < e.length(); i++)
         {
-            if(i < e.length()-1 && e.charAt(i) != ' ' && e.charAt(i) != '.' && e.charAt(i+1) != '.'  && e.charAt(i) != '-' && i < e.length()-1 && (!Character.isDigit(e.charAt(i)) || !Character.isDigit(e.charAt(i+1))))
+            if(i < e.length()-1 && e.charAt(i) != ' ' && e.charAt(i) != '.' && e.charAt(i+1) != '.'  &&
+            e.charAt(i) != '-' && i < e.length()-1 && (!Character.isDigit(e.charAt(i)) || !Character.isDigit(e.charAt(i+1))))
             {
                 e = e.substring(0,i+1) + " " + e.substring(i+1);
             }
@@ -165,7 +168,7 @@ public class Expression
         return c;
     }
 
-    //Forgetting about this function for the moment (also, it's really an expand method anyway)
+    //Forgetting about this function for the moment
     protected boolean recursiveExpand(Node r){
         if(r==null) { return false;}
         else{
